@@ -12,9 +12,25 @@ namespace Bridge
 {
     public partial class Form1 : Form
     {
+        private MessageController messageController = new MessageController();
         public Form1()
         {
             InitializeComponent();
+        }
+
+        private void btnSendMessage_Click(object sender, EventArgs e)
+        {
+            
+            if (radEmail.Checked)
+            {
+                messageController.SetMessageType(MessageType.Email);
+            }
+            else
+            {
+                messageController.SetMessageType(MessageType.SMS);
+            }
+
+            messageController.SendMessage(txtTo.Text, txtMessage.Text);
         }
     }
 }
